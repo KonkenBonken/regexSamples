@@ -37,4 +37,13 @@ export class NewLineToken extends Token {
   }
 }
 
-export type ConstToken = typeof WhiteSpaceToken | typeof NewLineToken;
+export class DigitToken extends Token {
+  readonly type = 'digit';
+
+  *samples() {
+    for (let n = 0; n < 10; n++)
+      yield n.toString();
+  }
+}
+
+export type ConstToken = typeof WhiteSpaceToken | typeof NewLineToken | typeof DigitToken;

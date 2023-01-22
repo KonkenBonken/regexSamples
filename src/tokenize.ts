@@ -2,7 +2,8 @@ import Token, { ConstToken, WhiteSpaceToken, NewLineToken, CharToken } from './T
 
 const bsDict: Record<string, ConstToken> = {
   s: WhiteSpaceToken,
-  n: NewLineToken
+  n: NewLineToken,
+  d: NewLineToken,
 }
 
 export default function tokenize(regex: RegExp) {
