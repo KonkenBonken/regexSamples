@@ -1,4 +1,9 @@
-import type Token from './Token';
+import Token, { BackSlashedToken, WhiteSpaceToken, NewLineToken, CharToken } from './Tokens';
+
+const bsDict: Record<string, BackSlashedToken> = {
+  w: WhiteSpaceToken,
+  n: NewLineToken
+}
 
 export default function tokenize(regex: RegExp) {
 
@@ -13,16 +18,10 @@ export default function tokenize(regex: RegExp) {
     }
 
     if (bs) {
-      tokens.push({
-        type: 'backslashed',
-        value: char
-      })
+      tokens.push(new (bsDict[char])())
       bs = false;
     } else {
-      tokens.push({
-        type: 'char',
-        value: char
-      })
+      tokens.push(new CharToken(char))
     }
   }
 

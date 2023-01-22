@@ -1,5 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Tokens_1 = require("./Tokens");
+const bsDict = {
+    w: Tokens_1.WhiteSpaceToken,
+    n: Tokens_1.NewLineToken
+};
 function tokenize(regex) {
     const str = regex.toString().slice(1, -1), tokens = [];
     let bs = false;
@@ -9,17 +14,11 @@ function tokenize(regex) {
             continue;
         }
         if (bs) {
-            tokens.push({
-                type: 'backslashed',
-                value: char
-            });
+            tokens.push(new (bsDict[char])());
             bs = false;
         }
         else {
-            tokens.push({
-                type: 'char',
-                value: char
-            });
+            tokens.push(new Tokens_1.CharToken(char));
         }
     }
     return tokens;
