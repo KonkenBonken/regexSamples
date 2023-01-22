@@ -13,9 +13,13 @@ export default function tokenize(regex: RegExp) {
       continue;
     }
 
-    if (bs && char in samplesDict) {
-      samples.push(samplesDict[char])
-    } else if (char === '.')
+    if (bs)
+      if (char in samplesDict)
+        samples.push(samplesDict[char])
+      else
+        samples.push(eval(`"\\${char}"`))
+
+    else if (char === '.')
       samples.push(samplesDict['.'])
     else
       samples.push(char)

@@ -9,9 +9,11 @@ function tokenize(regex) {
             bs = true;
             continue;
         }
-        if (bs && char in Tokens_1.samplesDict) {
-            samples.push(Tokens_1.samplesDict[char]);
-        }
+        if (bs)
+            if (char in Tokens_1.samplesDict)
+                samples.push(Tokens_1.samplesDict[char]);
+            else
+                samples.push(eval(`"\\${char}"`));
         else if (char === '.')
             samples.push(Tokens_1.samplesDict['.']);
         else

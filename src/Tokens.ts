@@ -16,12 +16,6 @@ export const samplesDict = {
   get W() { return all(...this.w as string) },
   s: ' \t\r\n\v\f',
   get S() { return all(...this.s as string) },
-  n: '\n',
-  0: '\0',
-  f: '\f',
-  r: '\r',
-  t: '\t',
-  v: '\v',
   // b:,
   // B:,
 } as Record<string, string | ReturnType<typeof all>>

@@ -17,11 +17,5 @@ exports.samplesDict = {
     get W() { return all(...this.w); },
     s: ' \t\r\n\v\f',
     get S() { return all(...this.s); },
-    n: '\n',
-    0: '\0',
-    f: '\f',
-    r: '\r',
-    t: '\t',
-    v: '\v',
 };
 //# sourceMappingURL=Tokens.js.map
