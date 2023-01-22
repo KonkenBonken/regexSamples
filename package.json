@@ -1,5 +1,5 @@
 {
-  "name": "regexsamples",
+  "name": "regex-sampleset",
   "version": "1.0.0",
   "description": "Generate sampleset from given regex",
   "main": "build/index.js",
@@ -10,6 +10,7 @@
   "keywords": [
     "regex"
   ],
+  "repository": "github:KonkenBonken/regexSamples",
   "author": "Konrad Pettersson <konrad05pettersson@gmail.com>",
   "license": "ISC",
   "types": "./build/index.d.ts",
