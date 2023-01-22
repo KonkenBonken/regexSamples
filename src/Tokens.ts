@@ -1,7 +1,9 @@
 export default abstract class Token {
   abstract readonly type: string;
 
-  abstract samples(): Generator<string, void, unknown>
+  protected abstract readonly _samples: IterableIterator<string> | string;
+
+  *samples() { yield* this._samples }
 }
 
 export abstract class ValueToken extends Token {
@@ -11,34 +13,22 @@ export abstract class ValueToken extends Token {
 
 export class CharToken extends ValueToken {
   readonly type = 'char';
-
-  *samples() {
-    yield this.value;
-  }
+  readonly _samples = this.value;
 }
 
 export class WhiteSpaceToken extends Token {
   readonly type = 'whitespace';
-
-  *samples() {
-    yield* ' \t\r\n\v\f';
-  }
+  readonly _samples = ' \t\r\n\v\f';
 }
 
 export class NewLineToken extends Token {
   readonly type = 'newline';
-
-  *samples() {
-    yield '\n';
-  }
+  readonly _samples = '\n';
 }
 
 export class DigitToken extends Token {
   readonly type = 'digit';
-
-  *samples() {
-    yield* '0123456789';
-  }
+  readonly _samples = '0123456789';
 }
 
 export type ConstToken = typeof WhiteSpaceToken | typeof NewLineToken | typeof DigitToken;

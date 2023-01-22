@@ -15,7 +15,9 @@ function tokenize(regex) {
             continue;
         }
         if (bs) {
-            tokens.push(new (bsDict[char])());
+            if (!(char in bsDict))
+                throw 'unknown ConstToken: ' + char;
+            tokens.push(new (bsDict[char]));
             bs = false;
         }
         else {
