@@ -12,4 +12,4 @@ export default function* regexSamples(regex: RegExp, count = 10) {
   }
 }
 
-console.log([...regexSamples(/w\w\w\w:d\d\d\d:D\D\D\D:W\W\W\W:...:s\s\s\s:S\S\S\S/)])
+console.log([...regexSamples(/abcd:w\w\w\w:d\d\d\d:D\D\D\D:W\W\W\W:...:s\s\s\s:S\S\S\S/)])

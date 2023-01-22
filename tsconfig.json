@@ -1,15 +1,8 @@
 {
-  "include": [
-    "src/index.ts"
-  ],
   "compilerOptions": {
-    "module": "Node16",
+    "target": "es2018",
     "strict": true,
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "removeComments": true,
-    "sourceMap": true,
-    "declaration": true,
-    "outDir": "build"
+    "declaration": true
   }
 }

@@ -12,8 +12,6 @@ const rawDict = {
   get W() { return all.filter(c => !this.w.includes(c)) },
   s: ' \t\r\n\v\f',
   get S() { return all.filter(c => !this.s.includes(c)) },
-  // b:,
-  // B:,
 } as Record<string, string | string[]>
 
 

@@ -4,7 +4,8 @@
   "description": "Generate sampleset from given regex",
   "main": "build/index.js",
   "scripts": {
-    "test": " "
+    "build": "ncc build src/index.ts -smd --target es2018 -o build/ --no-source-map-register",
+    "test": "ncc build src/index.ts -smw --target es2018 -o build/ --no-source-map-register"
   },
   "keywords": [
     "regex"
@@ -13,6 +14,6 @@
   "license": "ISC",
   "types": "./build/index.d.ts",
   "devDependencies": {
-    "typescript": "^4.9.4"
+    "@vercel/ncc": "^0.36.0"
   }
 }

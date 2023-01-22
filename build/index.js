@@ -1,16 +1,2 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const tokenize_1 = __importDefault(require("./tokenize"));
-const { floor, random } = Math;
-function* regexSamples(regex, count = 10) {
-    const tokens = (0, tokenize_1.default)(regex);
-    while (count--) {
-        yield tokens.map((sample, i) => sample[floor(random() * sample.length)]).join('');
-    }
-}
-exports.default = regexSamples;
-console.log([...regexSamples(/w\w\w\w:d\d\d\d:D\D\D\D:W\W\W\W:...:s\s\s\s:S\S\S\S/)]);
+(()=>{"use strict";var __webpack_modules__={669:(e,_,r)=>{r.d(_,{R:()=>o});const t="abcdefghijklmnopqrstuvwxyz",a=[];for(let e=32;e<=126;e++)a.push(String.fromCharCode(e));const s={".":a,d:"0123456789",get D(){return a.filter((e=>!this.d.includes(e)))},get w(){return t+t.toUpperCase()+this.d+"_"},get W(){return a.filter((e=>!this.w.includes(e)))},s:" \t\r\n\v\f",get S(){return a.filter((e=>!this.s.includes(e)))}};const o={};for(const e in s)o[e]=[...s[e]]},470:(__unused_webpack_module,__webpack_exports__,__nccwpck_require__)=>{__nccwpck_require__.d(__webpack_exports__,{Z:()=>tokenize});var _Tokens__WEBPACK_IMPORTED_MODULE_0__=__nccwpck_require__(669);function tokenize(regex){const str=regex.toString().slice(1,-1),samples=[];let bs=false;for(const char of str){if(char==="\\"){bs=true;continue}if(bs)if(char in _Tokens__WEBPACK_IMPORTED_MODULE_0__.R)samples.push(_Tokens__WEBPACK_IMPORTED_MODULE_0__.R[char]);else samples.push(eval(`"\\${char}"`));else if(char===".")samples.push(_Tokens__WEBPACK_IMPORTED_MODULE_0__.R["."]);else samples.push([char]);bs=false}return samples}}};var __webpack_module_cache__={};function __nccwpck_require__(e){var _=__webpack_module_cache__[e];if(_!==undefined){return _.exports}var r=__webpack_module_cache__[e]={exports:{}};var t=true;try{__webpack_modules__[e](r,r.exports,__nccwpck_require__);t=false}finally{if(t)delete __webpack_module_cache__[e]}return r.exports}(()=>{__nccwpck_require__.d=(e,_)=>{for(var r in _){if(__nccwpck_require__.o(_,r)&&!__nccwpck_require__.o(e,r)){Object.defineProperty(e,r,{enumerable:true,get:_[r]})}}}})();(()=>{__nccwpck_require__.o=(e,_)=>Object.prototype.hasOwnProperty.call(e,_)})();(()=>{__nccwpck_require__.r=e=>{if(typeof Symbol!=="undefined"&&Symbol.toStringTag){Object.defineProperty(e,Symbol.toStringTag,{value:"Module"})}Object.defineProperty(e,"__esModule",{value:true})}})();if(typeof __nccwpck_require__!=="undefined")__nccwpck_require__.ab=__dirname+"/";var __webpack_exports__={};(()=>{__nccwpck_require__.r(__webpack_exports__);__nccwpck_require__.d(__webpack_exports__,{default:()=>regexSamples});var e=__nccwpck_require__(470);const{floor:_,random:r}=Math;function*regexSamples(t,a=10){const s=(0,e.Z)(t);while(a--){yield s.map(((e,t)=>e[_(r()*e.length)])).join("")}}console.log([...regexSamples(/abcd:w\w\w\w:d\d\d\d:D\D\D\D:W\W\W\W:...:s\s\s\s:S\S\S\S/)])})();module.exports=__webpack_exports__})();
 //# sourceMappingURL=index.js.map
