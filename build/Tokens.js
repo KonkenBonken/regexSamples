@@ -11,15 +11,33 @@ class Token {
 }
 exports.default = Token;
 class CharToken extends Token {
-    constructor(value) { super('char', value); }
+    value;
+    constructor(value) {
+        super('char');
+        this.value = value;
+    }
+    *samples() {
+        yield this.value;
+    }
 }
 exports.CharToken = CharToken;
 class WhiteSpaceToken extends Token {
     constructor() { super('whitespace'); }
+    *samples() {
+        yield ' ';
+        yield '\t';
+        yield '\r';
+        yield '\n';
+        yield '\v';
+        yield '\f';
+    }
 }
 exports.WhiteSpaceToken = WhiteSpaceToken;
 class NewLineToken extends Token {
     constructor() { super('newline'); }
+    *samples() {
+        yield '\n';
+    }
 }
 exports.NewLineToken = NewLineToken;
 //# sourceMappingURL=Tokens.js.map

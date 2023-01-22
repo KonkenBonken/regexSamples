@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Tokens_1 = require("./Tokens");
 const bsDict = {
-    w: Tokens_1.WhiteSpaceToken,
+    s: Tokens_1.WhiteSpaceToken,
     n: Tokens_1.NewLineToken
 };
 function tokenize(regex) {

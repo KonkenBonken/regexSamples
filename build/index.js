@@ -9,5 +9,5 @@ function regexSamples(regex) {
     return tokens;
 }
 exports.default = regexSamples;
-console.log(regexSamples(/abc\w/));
+console.log(regexSamples(/abc\w\n/));
 //# sourceMappingURL=index.js.map

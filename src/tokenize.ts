@@ -1,7 +1,7 @@
 import Token, { BackSlashedToken, WhiteSpaceToken, NewLineToken, CharToken } from './Tokens';
 
 const bsDict: Record<string, BackSlashedToken> = {
-  w: WhiteSpaceToken,
+  s: WhiteSpaceToken,
   n: NewLineToken
 }
 
