@@ -11,8 +11,18 @@ function* all(...exclude: string[]) {
 export const samplesDict = {
   '.': all(),
   d: '0123456789',
+  get D() { return all(...this.d as string) },
   get w() { return az + az.toUpperCase() + this.d + '_' },
-  get W() { return all(this.w as string) },
+  get W() { return all(...this.w as string) },
   s: ' \t\r\n\v\f',
+  get S() { return all(...this.s as string) },
   n: '\n',
+  // b:,
+  // B:,
+  // 0:,
+  // f:,
+  // r:,
+  // t:,
+  // v:,
+
 } as Record<string, string | ReturnType<typeof all>>

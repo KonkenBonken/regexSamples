@@ -12,9 +12,11 @@ function* all(...exclude) {
 exports.samplesDict = {
     '.': all(),
     d: '0123456789',
+    get D() { return all(...this.d); },
     get w() { return az + az.toUpperCase() + this.d + '_'; },
-    get W() { return all(this.w); },
+    get W() { return all(...this.w); },
     s: ' \t\r\n\v\f',
+    get S() { return all(...this.s); },
     n: '\n',
 };
 //# sourceMappingURL=Tokens.js.map
