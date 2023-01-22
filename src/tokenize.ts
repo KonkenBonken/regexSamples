@@ -1,6 +1,6 @@
-import Token, { BackSlashedToken, WhiteSpaceToken, NewLineToken, CharToken } from './Tokens';
+import Token, { ConstToken, WhiteSpaceToken, NewLineToken, CharToken } from './Tokens';
 
-const bsDict: Record<string, BackSlashedToken> = {
+const bsDict: Record<string, ConstToken> = {
   s: WhiteSpaceToken,
   n: NewLineToken
 }
