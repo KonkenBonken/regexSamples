@@ -1,1 +1,1 @@
-export default function regexSamples(regex: RegExp, count?: number): Generator<string, void, unknown>;
+export declare function regexSamples(regex: RegExp, count?: number): Generator<string, void, unknown>;
