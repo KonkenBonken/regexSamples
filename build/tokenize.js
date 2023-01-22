@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Tokens_1 = __importDefault(require("./Tokens"));
+const Tokens_1 = require("./Tokens");
 function tokenize(regex) {
     const str = regex.toString().slice(1, -1), samples = [];
     let bs = false;
@@ -12,9 +9,11 @@ function tokenize(regex) {
             bs = true;
             continue;
         }
-        if (bs && char in Tokens_1.default) {
-            samples.push(Tokens_1.default[char]);
+        if (bs && char in Tokens_1.samplesDict) {
+            samples.push(Tokens_1.samplesDict[char]);
         }
+        else if (char === '.')
+            samples.push(Tokens_1.samplesDict['.']);
         else
             samples.push(char);
         bs = false;

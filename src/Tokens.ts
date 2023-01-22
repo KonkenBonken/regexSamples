@@ -1,6 +1,6 @@
 const az = 'abcdefghijklmnopqrstuvwxyz';
 
-function* all(exclude: string[] | string = []) {
+function* all(...exclude: string[]) {
   for (let i = 0; i <= 0xFFFF; i++)
     if (exclude.includes(String.fromCharCode(i)))
       continue
@@ -8,10 +8,11 @@ function* all(exclude: string[] | string = []) {
       yield String.fromCharCode(i);
 }
 
-export default new (class samplesDict {
-  readonly d = '0123456789'
-  readonly w = az + az.toUpperCase() + this.d + '_'
-  readonly W = all(this.w)
-  readonly s = ' \t\r\n\v\f'
-  readonly n = '\n'
-})()
+export const samplesDict = {
+  '.': all(),
+  d: '0123456789',
+  get w() { return az + az.toUpperCase() + this.d + '_' },
+  get W() { return all(this.w as string) },
+  s: ' \t\r\n\v\f',
+  n: '\n',
+} as Record<string, string | ReturnType<typeof all>>

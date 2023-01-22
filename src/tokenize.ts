@@ -1,9 +1,9 @@
-import samplesDict from './Tokens';
+import { samplesDict } from './Tokens';
 
 export default function tokenize(regex: RegExp) {
 
   const str = regex.toString().slice(1, -1),
-    samples: string[] = [];
+    samples: typeof samplesDict[keyof typeof samplesDict][] = [];
 
   let bs = false;
 
@@ -14,9 +14,10 @@ export default function tokenize(regex: RegExp) {
     }
 
     if (bs && char in samplesDict) {
-      // @ts-expect-error
       samples.push(samplesDict[char])
-    } else
+    } else if (char === '.')
+      samples.push(samplesDict['.'])
+    else
       samples.push(char)
 
     bs = false;
