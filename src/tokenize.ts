@@ -14,7 +14,8 @@ export default function tokenize(regex: RegExp) {
     }
 
     if (bs && char in samplesDict) {
-      samples.push(samplesDict[char as keyof typeof samplesDict])
+      // @ts-expect-error
+      samples.push(samplesDict[char])
     } else
       samples.push(char)
 
