@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Tokens_1 = require("./Tokens");
 const bsDict = {
     s: Tokens_1.WhiteSpaceToken,
-    n: Tokens_1.NewLineToken
+    n: Tokens_1.NewLineToken,
+    d: Tokens_1.NewLineToken,
 };
 function tokenize(regex) {
     const str = regex.toString().slice(1, -1), tokens = [];

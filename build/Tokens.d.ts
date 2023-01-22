@@ -1,22 +1,25 @@
-type TokenTypes = 'char' | 'whitespace' | 'newline';
 export default abstract class Token {
-    readonly type: TokenTypes;
-    readonly value?: string | undefined;
-    constructor(type: TokenTypes, value?: string | undefined);
-    abstract samples(): IterableIterator<string>;
+    abstract readonly type: string;
+    abstract samples(): Generator<string, void, unknown>;
 }
-export declare class CharToken extends Token {
+export declare abstract class ValueToken extends Token {
     readonly value: string;
     constructor(value: string);
+}
+export declare class CharToken extends ValueToken {
+    readonly type = "char";
     samples(): Generator<string, void, unknown>;
 }
 export declare class WhiteSpaceToken extends Token {
-    constructor();
-    samples(): Generator<" " | "\t" | "\r" | "\n" | "\v" | "\f", void, unknown>;
+    readonly type = "whitespace";
+    samples(): Generator<string, void, undefined>;
 }
 export declare class NewLineToken extends Token {
-    constructor();
-    samples(): Generator<"\n", void, unknown>;
+    readonly type = "newline";
+    samples(): Generator<string, void, unknown>;
 }
-export type BackSlashedToken = typeof WhiteSpaceToken | typeof NewLineToken;
-export {};
+export declare class DigitToken extends Token {
+    readonly type = "digit";
+    samples(): Generator<string, void, undefined>;
+}
+export type ConstToken = typeof WhiteSpaceToken | typeof NewLineToken | typeof DigitToken;
