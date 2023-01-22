@@ -1,1 +1,1 @@
-export default function regexSamples(regex: RegExp): (string | Generator<string, void, unknown>)[];
+export default function regexSamples(regex: RegExp, count?: number): Generator<string, void, unknown>;

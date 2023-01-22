@@ -17,7 +17,7 @@ function tokenize(regex) {
         else if (char === '.')
             samples.push(Tokens_1.samplesDict['.']);
         else
-            samples.push(char);
+            samples.push([char]);
         bs = false;
     }
     return samples;

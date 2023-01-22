@@ -22,7 +22,7 @@ export default function tokenize(regex: RegExp) {
     else if (char === '.')
       samples.push(samplesDict['.'])
     else
-      samples.push(char)
+      samples.push([char])
 
     bs = false;
   }

@@ -1,21 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.samplesDict = void 0;
-const az = 'abcdefghijklmnopqrstuvwxyz';
-function* all(...exclude) {
-    for (let i = 0; i <= 0xFFFF; i++)
-        if (exclude.includes(String.fromCharCode(i)))
-            continue;
-        else
-            yield String.fromCharCode(i);
-}
-exports.samplesDict = {
-    '.': all(),
+const az = 'abcdefghijklmnopqrstuvwxyz', all = [];
+for (let i = 32; i <= 126; i++)
+    all.push(String.fromCharCode(i));
+const rawDict = {
+    '.': all,
     d: '0123456789',
-    get D() { return all(...this.d); },
+    get D() { return all.filter(c => !this.d.includes(c)); },
     get w() { return az + az.toUpperCase() + this.d + '_'; },
-    get W() { return all(...this.w); },
+    get W() { return all.filter(c => !this.w.includes(c)); },
     s: ' \t\r\n\v\f',
-    get S() { return all(...this.s); },
+    get S() { return all.filter(c => !this.s.includes(c)); },
 };
+exports.samplesDict = {};
+for (const key in rawDict)
+    exports.samplesDict[key] = [...rawDict[key]];
 //# sourceMappingURL=Tokens.js.map

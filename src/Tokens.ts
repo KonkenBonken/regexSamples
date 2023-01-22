@@ -1,21 +1,23 @@
-const az = 'abcdefghijklmnopqrstuvwxyz';
+const az = 'abcdefghijklmnopqrstuvwxyz',
+  all: string[] = [];
 
-function* all(...exclude: string[]) {
-  for (let i = 0; i <= 0xFFFF; i++)
-    if (exclude.includes(String.fromCharCode(i)))
-      continue
-    else
-      yield String.fromCharCode(i);
-}
+for (let i = 32; i <= 126; i++)
+  all.push(String.fromCharCode(i));
 
-export const samplesDict = {
-  '.': all(),
+const rawDict = {
+  '.': all,
   d: '0123456789',
-  get D() { return all(...this.d as string) },
+  get D() { return all.filter(c => !this.d.includes(c)) },
   get w() { return az + az.toUpperCase() + this.d + '_' },
-  get W() { return all(...this.w as string) },
+  get W() { return all.filter(c => !this.w.includes(c)) },
   s: ' \t\r\n\v\f',
-  get S() { return all(...this.s as string) },
+  get S() { return all.filter(c => !this.s.includes(c)) },
   // b:,
   // B:,
-} as Record<string, string | ReturnType<typeof all>>
+} as Record<string, string | string[]>
+
+
+export const samplesDict: Record<string, string[]> = {};
+
+for (const key in rawDict)
+  samplesDict[key] = [...rawDict[key]];

@@ -1,8 +1,15 @@
 import tokenize from './tokenize';
 
-export default function regexSamples(regex: RegExp) {
+const { floor, random } = Math;
+
+export default function* regexSamples(regex: RegExp, count = 10) {
   const tokens = tokenize(regex);
-  return tokens;
+
+  while (count--) {
+    yield tokens.map((sample, i) =>
+      sample[floor(random() * sample.length)]
+    ).join('');
+  }
 }
 
-console.log(regexSamples(/abc.\d\D\w\W\s\S\n\0\f\r\t\v /))
+console.log([...regexSamples(/w\w\w\w:d\d\d\d:D\D\D\D:W\W\W\W:...:s\s\s\s:S\S\S\S/)])
