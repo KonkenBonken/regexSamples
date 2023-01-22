@@ -5,4 +5,4 @@ export default function regexSamples(regex: RegExp) {
   return tokens;
 }
 
-console.log(regexSamples(/abc.\d\D\w\W\s\S\n /).map(x => [...x]))
+console.log(regexSamples(/abc.\d\D\w\W\s\S\n0\f\r\t\v /).map(x => [...x]))
