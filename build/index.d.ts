@@ -1,1 +1,1 @@
-export default function regexSamples(regex: RegExp): void;
+export default function regexSamples(regex: RegExp): import("./Token").default[];
