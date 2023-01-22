@@ -1,30 +1,25 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Tokens_1 = require("./Tokens");
-const bsDict = {
-    s: Tokens_1.WhiteSpaceToken,
-    n: Tokens_1.NewLineToken,
-    d: Tokens_1.NewLineToken,
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+const Tokens_1 = __importDefault(require("./Tokens"));
 function tokenize(regex) {
-    const str = regex.toString().slice(1, -1), tokens = [];
+    const str = regex.toString().slice(1, -1), samples = [];
     let bs = false;
     for (const char of str) {
         if (char === '\\') {
             bs = true;
             continue;
         }
-        if (bs) {
-            if (!(char in bsDict))
-                throw 'unknown ConstToken: ' + char;
-            tokens.push(new (bsDict[char]));
-            bs = false;
+        if (bs && char in Tokens_1.default) {
+            samples.push(Tokens_1.default[char]);
         }
-        else {
-            tokens.push(new Tokens_1.CharToken(char));
-        }
+        else
+            samples.push(char);
+        bs = false;
     }
-    return tokens;
+    return samples;
 }
 exports.default = tokenize;
 //# sourceMappingURL=tokenize.js.map

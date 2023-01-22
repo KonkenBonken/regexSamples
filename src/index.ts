@@ -6,4 +6,3 @@ export default function regexSamples(regex: RegExp) {
 }
 
 console.log(regexSamples(/abc\s\n/))
-console.log(regexSamples(/abc\s\n/).map(x => [...x.samples()]))

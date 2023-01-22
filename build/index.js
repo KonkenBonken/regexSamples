@@ -10,5 +10,4 @@ function regexSamples(regex) {
 }
 exports.default = regexSamples;
 console.log(regexSamples(/abc\s\n/));
-console.log(regexSamples(/abc\s\n/).map(x => [...x.samples()]));
 //# sourceMappingURL=index.js.map
