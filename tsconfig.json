@@ -3,6 +3,9 @@
     "target": "es2018",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "declaration": true
+    "declaration": true,
+    "lib": [
+      "es2022"
+    ]
   }
 }

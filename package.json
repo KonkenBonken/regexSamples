@@ -1,6 +1,6 @@
 {
   "name": "regex-sampleset",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Generate sampleset from given regex",
   "main": "build/index.js",
   "scripts": {

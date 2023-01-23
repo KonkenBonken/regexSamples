@@ -5,3 +5,6 @@ console.log([
 ])
 
 console.log([...regexSamples(/\d\d:\d\d/, 50)])
+
+console.log([...regexSamples(/[abcd]\d/)])
+console.log([...regexSamples(/[\d\w\s]/)])

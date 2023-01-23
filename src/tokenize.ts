@@ -2,29 +2,38 @@ import { samplesDict } from './dictionary';
 
 export default function tokenize(regex: RegExp) {
 
-  const str = regex.toString().slice(1, -1),
-    samples: typeof samplesDict[keyof typeof samplesDict][] = [];
+  let backslash = false,
+    currentBracket: string[][] | null = null;
 
-  let bs = false;
+  const str = regex.toString().slice(1, -1),
+    samples: string[][] = [],
+    push = (s: string[]) => (currentBracket || samples).push(s);
 
   for (const char of str) {
-    if (char === '\\') {
-      bs = true;
-      continue;
+    switch (char) {
+      case '\\':
+        backslash = true;
+        continue;
+      case '[':
+        currentBracket = [];
+        continue;
+      case ']':
+        samples.push((currentBracket as string[][]).flat())
+        currentBracket = null;
+        continue;
     }
 
-    if (bs)
+    if (backslash) {
       if (char in samplesDict)
-        samples.push(samplesDict[char])
+        push(samplesDict[char])
       else
-        samples.push(eval(`"\\${char}"`))
-
-    else if (char === '.')
-      samples.push(samplesDict['.'])
+        push(eval(`"\\${char}"`))
+    } else if (char === '.')
+      push(samplesDict['.'])
     else
-      samples.push([char])
+      push([char])
 
-    bs = false;
+    backslash = false;
   }
 
   return samples;
