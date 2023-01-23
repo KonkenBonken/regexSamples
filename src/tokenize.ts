@@ -1,4 +1,4 @@
-import { samplesDict } from './Tokens';
+import { samplesDict } from './dictionary';
 
 export default function tokenize(regex: RegExp) {
 
