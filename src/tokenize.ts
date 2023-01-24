@@ -12,29 +12,38 @@ export default function tokenize(regex: RegExp) {
     push = (s: string[]) => array().push(s);
 
   for (const char of str) {
-    switch (char) {
-      case '\\':
-        backslash = true;
-        continue;
-      case '[':
-        currentBracket = [];
-        continue;
-      case ']':
-        samples.push((currentBracket as string[][]).flat())
-        currentBracket = null;
-        continue;
-      case '.':
-        push(samplesDict['.'])
-        continue;
-      case '?':
-        multipliers[array().length - 1] = '?'
-        continue;
-      case '+':
-        multipliers[array().length - 1] = '+'
-        continue;
+    if (!backslash) {
+      switch (char) {
+        case '\\':
+          backslash = true;
+          continue;
+        case ']':
+          if (currentBracket) {
+            samples.push((currentBracket as string[][]).flat())
+            currentBracket = null;
+            continue;
+          }
+      }
+      if (!currentBracket)
+        switch (char) {
+          case '[':
+            currentBracket = [];
+            continue;
+          case '?':
+            multipliers[array().length - 1] = '?'
+            continue;
+          case '+':
+            multipliers[array().length - 1] = '+'
+            continue;
+        }
     }
 
-    if (backslash) {
+    if (char === '.') {
+      if (backslash)
+        push(['.'])
+      else
+        push(samplesDict['.'])
+    } else if (backslash) {
       if (char in samplesDict)
         push(samplesDict[char])
       else
