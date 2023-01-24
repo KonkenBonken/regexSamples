@@ -1,9 +1,15 @@
 import tokenize from './tokenize';
+import { defaultOptions } from './options';
 
 const { floor, ceil, round, random } = Math;
 
-export function* regexSamples(regex: RegExp, count = 10) {
-  const [samples, multipliers] = tokenize(regex);
+export function regexSamples(regex: RegExp): Generator<string, void, unknown>
+export function regexSamples(regex: RegExp, optionsOverride: Partial<typeof defaultOptions>): Generator<string, void, unknown>
+export function* regexSamples(regex: RegExp, _optionsOverride?: Partial<typeof defaultOptions>) {
+  const options = { ...defaultOptions, ..._optionsOverride },
+    [samples, multipliers] = tokenize(regex);
+
+  let { resultCount: count, maxCountPlus } = options;
 
   while (count--) {
     let str = '';
@@ -14,7 +20,7 @@ export function* regexSamples(regex: RegExp, count = 10) {
       if (multiplier === '?')
         count = round(random());
       if (multiplier === '+')
-        count = ceil(random() * 10);
+        count = ceil(random() * maxCountPlus);
 
       for (let j = 0; j < count; j++)
         str += sample[floor(random() * sample.length)];

@@ -19,7 +19,7 @@ export default function tokenize(regex: RegExp) {
           continue;
         case ']':
           if (currentBracket) {
-            samples.push((currentBracket as string[][]).flat())
+            samples.push(currentBracket.flat())
             currentBracket = null;
             continue;
           }
