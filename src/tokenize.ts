@@ -21,6 +21,9 @@ export default function tokenize(regex: RegExp) {
         samples.push((currentBracket as string[][]).flat())
         currentBracket = null;
         continue;
+      case '.':
+        push(samplesDict['.'])
+        continue;
     }
 
     if (backslash) {
@@ -28,8 +31,7 @@ export default function tokenize(regex: RegExp) {
         push(samplesDict[char])
       else
         push(eval(`"\\${char}"`))
-    } else if (char === '.')
-      push(samplesDict['.'])
+    }
     else
       push([char])
 
