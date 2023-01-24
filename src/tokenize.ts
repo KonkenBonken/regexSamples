@@ -6,8 +6,10 @@ export default function tokenize(regex: RegExp) {
     currentBracket: string[][] | null = null;
 
   const str = regex.toString().slice(1, -1),
+    multipliers: Record<number, '+' | '?'> = {},
     samples: string[][] = [],
-    push = (s: string[]) => (currentBracket || samples).push(s);
+    array = () => currentBracket || samples,
+    push = (s: string[]) => array().push(s);
 
   for (const char of str) {
     switch (char) {
@@ -24,6 +26,12 @@ export default function tokenize(regex: RegExp) {
       case '.':
         push(samplesDict['.'])
         continue;
+      case '?':
+        multipliers[array().length - 1] = '?'
+        continue;
+      case '+':
+        multipliers[array().length - 1] = '+'
+        continue;
     }
 
     if (backslash) {
@@ -38,5 +46,5 @@ export default function tokenize(regex: RegExp) {
     backslash = false;
   }
 
-  return samples;
+  return [samples, multipliers] as const;
 }
